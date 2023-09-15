@@ -1,9 +1,7 @@
 import React from "react";
 
 const getTodayString = () => {
-  const [month, day, year] = new Date()
-    .toLocaleDateString("en-US")
-    .split("/");
+  const [month, day, year] = new Date().toLocaleDateString("en-US").split("/");
   return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
 };
 
@@ -17,10 +15,8 @@ export const AppointmentForm = ({
   setDate,
   time,
   setTime,
-  handleSubmit
+  handleSubmit,
 }) => {
-
-  return (
-    <></>
-  );
+  return <></>;
 };
+export default AppointmentForm;
