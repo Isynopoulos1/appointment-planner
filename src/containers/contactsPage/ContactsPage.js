@@ -42,8 +42,6 @@ export const ContactsPage = ({ contacts, addContact }) => {
     setDuplicates(false);
   }, [name]);
 
-  console.log("contacts", contacts);
-
   return (
     <div>
       <section>
@@ -64,15 +62,9 @@ export const ContactsPage = ({ contacts, addContact }) => {
       <hr />
       <section>
         <h2>Contacts</h2>
-        <TileList data={contacts} />
-        {/* recorrer el array de contactos utilizando map para mostrar cada nombre
-        de contacto en la lista. */}
-        <ul>
-          {contacts.map((item, index) => (
-            <li key={index}>{item.name}</li>
-          ))}
-        </ul>
+        <TileList data={contacts} type="contact" />
       </section>
     </div>
   );
 };
+export default ContactsPage;

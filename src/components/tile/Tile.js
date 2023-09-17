@@ -1,18 +1,19 @@
 import React from "react";
 
-export const Tile = ({ data }) => {
-  let valuesArray = [];
-
-  if (typeof data === "object" && data !== null) {
-    valuesArray = Object.values(data);
-    console.log("values", valuesArray);
+export const Tile = ({ index, type, ...props }) => {
+  const isData = props && Array.isArray(Object.entries(props));
+  if (!isData) {
+    return <div>There is no {type} available</div>;
   }
 
   return (
     <div className="tile-container">
-      {valuesArray.map((item, index) => (
-        <p className="tile-title" key={index} name={item}>
-          {item}
+      <h2>
+        {type} Number {index}
+      </h2>
+      {Object.entries(props)?.map((el, i) => (
+        <p className="tile-title" key={i}>
+          {el[0]}: <strong>{el[1]}</strong>
         </p>
       ))}
     </div>

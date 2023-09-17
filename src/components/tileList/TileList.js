@@ -1,17 +1,17 @@
 import React from "react";
 import Tile from "../tile/Tile";
 
-export const TileList = ({ data }) => {
-  return (
-    <div>
-      {data ? (
-        data.map((item, index) => (
-          <Tile key={index} name={item.name} {...item} />
-        ))
-      ) : (
-        <p>No contacts available</p>
-      )}
-    </div>
+export const TileList = ({ data, type }) => {
+  console.log(data, type);
+
+  return data ? (
+    <ul>
+      {data?.map((item, index) => (
+        <Tile key={index} index={index + 1} type={type} {...item} />
+      ))}
+    </ul>
+  ) : (
+    <p>No {type} available</p>
   );
 };
 

@@ -13,18 +13,14 @@ export const ContactForm = ({
   return (
     <>
       <form onSubmit={onSubmit}>
-        <label name={name} htmlFor="name">
-          Name:
-        </label>
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
           id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <label phone={phone} htmlFor="phone">
-          Phone:
-        </label>
+        <label htmlFor="phone">Phone:</label>
         <input
           type="text"
           id="phone"
@@ -32,9 +28,7 @@ export const ContactForm = ({
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
-        <label email={email} htmlFor="email">
-          E-mail:
-        </label>
+        <label htmlFor="email">E-mail:</label>
         <input
           type="text"
           id="email"

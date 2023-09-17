@@ -4,9 +4,9 @@ import { AppointmentForm } from "../../components/appointmentForm/AppointmentFor
 import { TileList } from "../../components/tileList/TileList";
 
 export const AppointmentsPage = ({
+  addAppointments,
   appointments,
   contacts,
-  newAppointment,
 }) => {
   /*
   Define state variables for 
@@ -17,7 +17,6 @@ export const AppointmentsPage = ({
   const [contact, setContact] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [title, setTitle] = useState("");
   const [duplicates, setDuplicates] = useState(false);
 
   const handleSubmit = (e) => {
@@ -25,9 +24,11 @@ export const AppointmentsPage = ({
     /*
     Add contact info and clear data  
     */
-    const isDuplicated = contacts.some((contact) => contact.name === name);
-    if (isDuplicated) {
-      newAppointment(name, contact, date, time);
+    const isDuplicated = appointments.some(
+      (appointment) => appointment.date === date
+    );
+    if (!isDuplicated) {
+      addAppointments(name, contact, date, time);
       // Clear the form input fields
       setName("");
       setContact("");
@@ -40,8 +41,8 @@ export const AppointmentsPage = ({
 
   useEffect(() => {
     setDuplicates(false);
-  }, [name]);
-  // console.log("appointment", contacts);
+  }, [date]);
+
   return (
     <div>
       <section>
@@ -50,13 +51,15 @@ export const AppointmentsPage = ({
           <AppointmentForm
             //STATE
             contact={contact}
-            duplicates={duplicates}
-            title={title}
+            name={name}
             date={date}
             time={time}
+            duplicates={duplicates}
+            // ARRAY
+            contacts={contacts}
             //FUNCTIONS
             setContact={setContact}
-            setTitle={setTitle}
+            setName={setName}
             setDate={setDate}
             setTime={setTime}
             handleSubmit={handleSubmit}
@@ -65,10 +68,8 @@ export const AppointmentsPage = ({
       </section>
       <hr />
       <section>
-        <h2>
-          Appointments
-          <TileList data={appointments} />
-        </h2>
+        <h2>Appointments</h2>
+        <TileList data={appointments} type="appointment" />
       </section>
     </div>
   );
